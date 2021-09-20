@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<p>
+<div th:each="variants : ${@fileUploadForm.getPossibleVariants()}">
+    <span style="font-weight:bold" th:text="${variants.getKey()}"></span>.
+    <div th:each="employee : ${variants.getValue()}">
+        <span style="font-weight:bold" th:text="${employee.getFirstEmployee()}"></span>
+        with
+        <span style="font-weight:bold" th:text="${employee.getSecondEmployee()}"></span>
+        <span th:text="${employee.getMatchesPercent()}"></span>%
+        <span>
+    </span>
+    </div>
+    Average score =  <span  th:text="${@fileUploadForm.average(variants.getValue())}"></span> %
+</div>
+</p>
+
+
+The highest average match score is for the 1st set:  <span th:text="${@fileUploadForm.bestAverageScore}"></span>
+<div th:each="employee : ${@fileUploadForm.getBestPairsVariant()}">
+    <span style="font-weight:bold" th:text="${employee.getFirstEmployee()}"></span>
+    with
+    <span style="font-weight:bold" th:text="${employee.getSecondEmployee()}"></span>
+    <span th:text="${employee.getMatchesPercent()}"></span>%
+    <span>
+    </span>
+</div>
+
+</body>
+</html>
